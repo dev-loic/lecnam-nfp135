@@ -7,25 +7,26 @@ public class Exercice2 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String [] employees = {"A", "B"};
-        double [] salaries = new double[employees.length];
+        double salaryA = 0, salaryB = 0;
 
-        for(int i=0; i < employees.length; i++) {
-            System.out.print("Entrez le salaire de " + employees[i] + " : ");
-            salaries[i] = sc.nextDouble();
-        }
+        // On recupere les 2 salaires
+        System.out.print("Entrez le salaire de A : ");
+        salaryA = sc.nextDouble();
 
-        for(int i=0; i < salaries.length ; i++) {
-            for(int j=i+1; j < salaries.length ; j++) {
-                double difference = ((salaries[i] - salaries[j]) / salaries[i]) * 100;
-                if (Math.abs(difference) > 3) {
-                    String mostPaid = difference > 3 ? employees[i] : employees[j];
-                    String lessPaid = difference > 3 ? employees[j] : employees[i];
-                    System.out.println("Attention, l'employé " + mostPaid + " gagne bien plus que l'employé " + lessPaid + " !");
-                } else {
-                    System.out.println("tout va bien");
-                }
-            }
+        System.out.print("Entrez le salaire de B : ");
+        salaryB = sc.nextDouble();
+
+        // On calcule les differences relatives
+        double differenceA = ((salaryB - salaryA) / salaryA) * 100;
+        double differenceB = ((salaryA - salaryB) / salaryB) * 100;
+
+        // On teste les valeurs de ces differences pour savoir si A ou B gagne plus de 3% que l'autre
+        if (differenceA > 3) {
+            System.out.println("B gagne beaucoup plus que A");
+        } else if (differenceB > 3) {
+            System.out.println("A gagne beaucoup plus que B");
+        } else {
+            System.out.println("C'est ok");
         }
 
         sc.close();
